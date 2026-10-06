@@ -5,6 +5,8 @@ import { type FormEvent } from "react";
 import { useState } from "react";
 import { toast } from "../ui/toast";
 
+console.log("generale concept graphqrl");
+
 type SearchFormProps = {
   userName: string;
   setUserName: React.Dispatch<React.SetStateAction<string>>;
