@@ -7,16 +7,9 @@ import {
 
 import { onError } from "@apollo/client/link/error";
 
-const errorLink = onError(({ graphQLError, networkError }) => {
-  if (graphQLError) {
-    graphQLError.forEach(({ message, locations, path }) => {
-      console.error(
-        `[GraphQL erroe]: Message:${message}, Locations:${locations},Path:${path}`,
-      );
-    });
-  }
-  if (networkError) {
-    console.error(`[Network error]: ${networkError}`);
+const errorLink = onError(({ error }) => {
+  if (error) {
+    console.error("[Apollo Error]:", error);
   }
 });
 
@@ -29,11 +22,11 @@ const httpLink = new HttpLink({
   },
 });
 
-const link = ApolloLink.from([httpLink]);
+const link = ApolloLink.from([errorLink, httpLink]);
 
-const client = new ApolloClient({
+export const client = new ApolloClient({
   link,
-  cache: InMemoryCache(),
+  cache: new InMemoryCache(),
 });
 
 export default client;

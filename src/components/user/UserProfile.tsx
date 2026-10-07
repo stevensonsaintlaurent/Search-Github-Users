@@ -1,7 +1,33 @@
+import { useQuery } from "@apollo/client/react";
+import { GET_USER } from "@/queries";
+import { type User } from "@/types";
+
 type UserProfileProps = {
   userName: string;
 };
 
+export type UserData = {
+  user: User;
+};
 export default function UserProfile({ userName }: UserProfileProps) {
-  return <h1 className="text-2xl font-bold">{userName}</h1>;
+  const { data, loading, error } = useQuery<UserData>(GET_USER, {
+    variables: { login: userName },
+  });
+
+  if (loading) return <p>Loading...</p>;
+  if (error) return <p>Error: {error.message}</p>;
+
+  if (!data) return <h2 className="text-2xl">user not found</h2>;
+
+  const {
+    avatarUrl,
+    name,
+    bio,
+    url,
+    repositories,
+    followers,
+    following,
+    gists,
+  } = data.user;
+  return <h1 className="text-2xl font-bold">{bio}</h1>;
 }

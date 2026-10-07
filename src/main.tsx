@@ -1,12 +1,14 @@
-import { StrictMode } from "react";
-import { createRoot } from "react-dom/client";
-import "./index.css";
-import App from "./App.tsx";
-import { Toaster } from "./components/ui/toast.tsx";
+import React from "react";
+import ReactDOM from "react-dom/client";
+import { ApolloProvider } from "@apollo/client/react";
 
-createRoot(document.getElementById("root")!).render(
-  <StrictMode>
-    <App />
-    <Toaster />
-  </StrictMode>,
+import { client } from "./apolloClient";
+import App from "./App";
+
+ReactDOM.createRoot(document.getElementById("root")!).render(
+  <React.StrictMode>
+    <ApolloProvider client={client}>
+      <App />
+    </ApolloProvider>
+  </React.StrictMode>,
 );
