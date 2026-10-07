@@ -2,6 +2,7 @@ import { useQuery } from "@apollo/client/react";
 import { GET_USER } from "@/queries";
 import { type User } from "@/types";
 import UserCard from "../user/UserCard";
+import StartsContainer from "./StartsContainer";
 
 type UserProfileProps = {
   userName: string;
@@ -31,5 +32,16 @@ export default function UserProfile({ userName }: UserProfileProps) {
     gists,
   } = data.user;
 
-  return <UserCard avatarUrl={avatarUrl} name={name} bio={bio} url={url} />;
+  return (
+    <div>
+      <UserCard avatarUrl={avatarUrl} name={name} bio={bio} url={url} />
+
+      <StartsContainer
+        totalRepos={repositories.totalCount}
+        followers={followers.totalCount}
+        following={following.totalCount}
+        gists={gists.totalCount}
+      />
+    </div>
+  );
 }
