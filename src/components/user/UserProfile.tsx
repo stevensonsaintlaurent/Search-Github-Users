@@ -30,5 +30,6 @@ export default function UserProfile({ userName }: UserProfileProps) {
     following,
     gists,
   } = data.user;
-  <UserCard avatarUrl={avatarUrl} name={name} bio={bio} url={url} />;
+
+  return <UserCard avatarUrl={avatarUrl} name={name} bio={bio} url={url} />;
 }

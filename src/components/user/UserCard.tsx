@@ -13,7 +13,6 @@ type UserCardProps = {
   url: string;
 };
 const UserCard = ({ avatarUrl, name, bio, url }: UserCardProps) => {
-  console.log("avatarUrl, name, bio, url:", url);
   return (
     <Card className="w-full lg:w-1/2 mb-8">
       <CardHeader className="flex-row gap-x-8 items-center">
