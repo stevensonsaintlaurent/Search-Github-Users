@@ -1,6 +1,7 @@
 import { useQuery } from "@apollo/client/react";
 import { GET_USER } from "@/queries";
 import { type User } from "@/types";
+import UserCard from "../user/UserCard";
 
 type UserProfileProps = {
   userName: string;
@@ -29,5 +30,5 @@ export default function UserProfile({ userName }: UserProfileProps) {
     following,
     gists,
   } = data.user;
-  return <h1 className="text-2xl font-bold">{bio}</h1>;
+  <UserCard avatarUrl={avatarUrl} name={name} bio={bio} url={url} />;
 }
