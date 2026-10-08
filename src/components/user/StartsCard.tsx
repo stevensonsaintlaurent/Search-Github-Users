@@ -1,9 +1,4 @@
-import {
-  Card,
-  CardTitle,
-  CardDescription,
-  CardHeader,
-} from "@/components/ui/card";
+import { Card, CardTitle, CardDescription } from "@/components/ui/card";
 
 type StartsCardProps = {
   title: string;
