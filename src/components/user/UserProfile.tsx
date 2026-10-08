@@ -3,6 +3,9 @@ import { GET_USER } from "@/queries";
 import { type User } from "@/types";
 import UserCard from "../user/UserCard";
 import StartsContainer from "./StartsContainer";
+import ForkedRepos from "../charts/ForkedRepos";
+import PopularRepos from "../charts/PopularRepos";
+import UsedLanguages from "../charts/UsedLanguages";
 
 type UserProfileProps = {
   userName: string;
@@ -42,6 +45,13 @@ export default function UserProfile({ userName }: UserProfileProps) {
         following={following.totalCount}
         gists={gists.totalCount}
       />
+      {repositories.totalCount > 0 && (
+        <div className="grid md:grid-cols-2 gap-4">
+          <UsedLanguages repositories={repositories.nodes} />
+          <PopularRepos repositories={repositories.nodes} />
+          <ForkedRepos repositories={repositories.nodes} />
+        </div>
+      )}
     </div>
   );
 }
